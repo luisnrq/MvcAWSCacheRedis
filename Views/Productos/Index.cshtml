@@ -4,11 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Productos AWS Cache Redis</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+<h2 style="color:blue">@TempData["MENSAJE"]</h2>
 <table class="table">
     <thead>
         <tr>
@@ -49,7 +48,8 @@
                 <img src="@item.Imagen" style="width:150px;height:150px" />
             </td>
             <td>
-                <a asp-controller="Productos" asp-action="Details" asp-route-id="@item.IdProducto" class="btn btn-info">Details</a> 
+                <a asp-controller="Productos" asp-action="Details" asp-route-id="@item.IdProducto" class="btn btn-info">Details</a>
+                <a asp-controller="Productos" asp-action="SeleccionarFavorito" asp-route-id="@item.IdProducto" class="btn btn-outline-success">Favorito</a>
             </td>
         </tr>
 }

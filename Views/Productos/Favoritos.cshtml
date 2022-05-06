@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MvcAWSCacheRedis.Models.Producto>
+
+@{
+    ViewData["Title"] = "Favoritos";
+}
+
+<h1>Poductos Favoritos</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@if (Model == null)
+{
+    <h1 style="color:red">No existen productos en Cache</h1>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdProducto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imagen)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)
+                    </td>
+                    <td>
+                        <img src="@item.Imagen" style="width:150px;height:150px;" />
+                    </td>
+                    <td>
+                        <a asp-controller="Productos" asp-action="EliminarFavorito" asp-route-id="@item.IdProducto" class="btn btn-danger">Eliminar de Cache</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
